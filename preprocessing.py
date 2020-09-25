@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np
 from utils import read_excel
 
-df = read_excel('NRW~1\MeasData(19-12-23 17-10-06)_CNT.xls')
-
 def decibel_to_linear(decibel):
     return 10**(decibel / 20)
     

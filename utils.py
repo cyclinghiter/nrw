@@ -7,14 +7,13 @@ import matplotlib as mpl
 import matplotlib.cm as cm 
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-
 class graphTool():
     def __init__(self, figshape, figsize):
         plt.style.use('ggplot')
         mpl.rcParams['axes.unicode_minus'] = False
         self.fig, self.axes = plt.subplots(*figshape, figsize=figsize, squeeze = False)
     
-    def params(func):
+    def params(f):
         def wrapper(*args, **kwargs):
             label = ''
             c = 'r'
@@ -25,13 +24,14 @@ class graphTool():
                 if key == 'c': c = val
                 if key == 's': s = val
                 if key == 'title': title = val
-            func(*args, **kwargs)
+            f(*args, **kwargs)
         return wrapper 
         
     @params
     def plot(self, ax_num, x, y = None, label='', c='r', title= ''):
         self.axes[ax_num].plot(x, y, label = label, c = c)
         self.axes[ax_num].legend()
+        
         if title != '':
             self.axes[ax_num].set_title(title)
     @params
@@ -71,7 +71,6 @@ class graphTool():
     def show(self):
         plt.show()
         plt.close('all')
-
 
 def read_excel(path, encoding = 'utf-8', header=[1,2]):
     df = pd.read_excel(path, encoding = encoding, header=header)
