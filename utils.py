@@ -74,8 +74,8 @@ class graphTool():
 
 def read_excel(path, encoding = 'utf-8', header=[1,2]):
     df = pd.read_excel(path, encoding = encoding, header=header)
-    df.index = df[df.columns[2]]
-    df = df.drop([df.columns[0], df.columns[1], df.columns[2]], axis=1)
+    df.index = df[df.columns[0]]
+    df = df.drop([df.columns[0]], axis=1)
     df.index.name = 'Freq [MHz]'
     return df
 
